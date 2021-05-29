@@ -1,6 +1,26 @@
 import math
 import unittest
+import random
 
+def wallis(n):
+	prod = 1
+	for i in range(1, n + 1):
+		y = 4*i*i
+		prod = prod * (y / (y - 1))
+	return prod * 2
+		
+def monte_carlo(n):
+	ins = 0
+	total = 0  
+	for i in range(n):
+		x = random.random()
+		y = random.random()
+		total += 1
+		if(x**2 + y**2 < 1):
+			ins += 1
+	return 4 * (ins / total)
+	
+	
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
         for i in range(0, 5):
